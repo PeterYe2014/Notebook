@@ -1,0 +1,220 @@
+[TOC]
+
+## lsb_release
+
+
+
+用该命令来查看linux的版本信息
+``` sh
+root: lsb_release
+
+Distributor ID: Ubuntu
+Description:    Ubuntu 16.04.3 LTS
+Release:        16.04
+Codename:       xenial
+
+uname -a 
+getconf LONG_BIT 
+```
+
+## curl
+
+```java
+/**
+-S, --show-errorWhen used with -s, --silent, it makes curl show an error message if it fails.
+
+-s, --silentSilent or quiet mode. Don't show progress meter or error messages. Makes Curl mute. It will still output the data you ask for, potentially even to the terminal/stdout unless you redirect it.
+
+-L 跟随重定向
+**/
+```
+## CentOS特殊
+
+```
+rpm -i <package_file>  #安装文件
+yum -i install
+yum -i update
+```
+不装mysql装mariadb
+
+## Linux常识
+1. 常见的安装目录有：```/usr/local```、``` /usr/share```
+2. 配置目录：``` /etc/```
+3. 日志目录：```/var/log```
+4. MYSQL 历史记录：```/root/.mysql_history```
+
+
+
+## 文件系统
+
+1.1    文件颜色
+
+linux中文件颜色，蓝色，白色等各自代表的含义
+
+绿色文件---------- 可执行文件，可执行的程序 
+
+红色文件-----------压缩文件或者包文件 
+
+蓝色文件----------目录  
+
+白色文件----------一般性文件，如文本文件，配置文件，源码文件等  
+
+浅蓝色文件----------链接文件，主要是使用ln命令建立的文件
+
+1．2 文件目录
+
+​       / 根目录， ~ 是个人home
+
+1.2    基础命令
+
+ls　　        显示文件或目录
+
+-l           列出文件详细信息l(list)
+
+-a          列出当前目录下所有文件及目录，包括隐藏的a(all)
+
+mkdir         创建目录
+
+-p           创建目录，若无父目录，则创建p(parent)
+
+cd               切换目录
+
+touch          创建空文件
+
+echo            创建带有内容的文件。
+
+cat              查看文件内容
+
+cp                拷贝
+
+mv               移动或重命名
+
+rm               删除文件
+
+-r            递归删除，可删除子目录及文件
+
+-f            强制删除
+
+find              在文件系统中搜索某文件
+
+wc                统计文本中行数、字数、字符数
+
+grep             在文本文件中查找某个字符串
+
+rmdir           删除空目录
+
+tree             树形结构显示目录，需要安装tree包
+
+pwd              显示当前目录
+
+ln                  创建链接文件
+
+more、less  分页显示文本文件内容
+
+head、tail    显示文件头、尾内容
+
+ctrl+alt+F1  命令行全屏模式
+
+## 系统配置
+
+1.1   path变量
+
+echo $PATH // 打印path变量的值
+
+cat /proc/version // 内核版本
+
+lsb_release –a // 发行版版本
+
+
+
+## 用户及权限管理
+
+添加用户组以及添加用户
+
+```
+groupadd nginx  # add nginx group
+useradd nginx -g nginx # add user nginx to group user
+```
+
+Linux通过```uid```和```gid```来标识用户和用户组，我们也可以查询这些标识符
+
+```
+id -u # 查询UID
+id -g # 查询GID
+whoami # 查询当前用户的信息（用户名、UID、GID等信息）
+```
+
+Linux用户管理里面最重要的就是权限管理了，每一个目录、文件都有访问权限```rwx```分别代表读、写、执行权限。
+
+通过命令```ll```查看文件目录的权限
+
+```
+drwxr-xr-x  4 root root 4096 Sep 20 17:03 ./
+drwxr-xr-x 12 root root 4096 Sep 20 15:21 ../
+drwxr-xr-x  2 root root 4096 Sep 20 15:38 html/
+drwxr-xr-x  5 root root 4096 Sep 20 14:52 jekyll/
+```
+
+```drwxr-xr-x```这里有十个字母，第一代表**目录**，后面九个，每三个一组，分别代表*拥有者的权限、同组的权限、其它组*的权限。
+
+在Linux中一般```home```路径下的权限很严，只允许拥有者访问，其它的用户都不能访问，所以提供共享的文件都不放在该目录中，而```var```以及```usr```目录的访问权限就比较开放，所以常常用来作为存放公共文件，如网站、日志、软件等目录。
+
+```
+#/var 目录
+drwxr-xr-x 12 root root   4096 Sep 20 15:21 ./
+drwxr-xr-x 22 root root   4096 Sep 20 15:20 ../
+drwxr-xr-x  2 root root   4096 Sep 10 06:25 backups/
+drwxr-xr-x  8 root root   4096 Aug 17  2017 cache/
+drwxr-xr-x 45 root root   4096 Sep 20 15:21 lib/
+drwxrwsr-x  2 root staff  4096 Apr 13  2016 local/
+lrwxrwxrwx  1 root root      9 Aug 17  2017 lock -> /run/lock/
+drwxrwxr-x  5 root syslog 4096 Sep 20 15:21 log/
+drwxrwsr-x  2 root mail   4096 Feb 16  2017 mail/
+drwxr-xr-x  2 root root   4096 Feb 16  2017 opt/
+lrwxrwxrwx  1 root root      4 Aug 17  2017 run -> /run/
+drwxr-xr-x  4 root root   4096 Aug 17  2017 spool/
+drwxrwxrwt  2 root root   4096 Aug 22 18:00 tmp/
+drwxr-xr-x  4 root root   4096 Sep 20 17:03 www/
+# /usr 目录
+drwxr-xr-x  11 root root  4096 Aug 27 23:53 ./
+drwxr-xr-x  22 root root  4096 Sep 20 15:20 ../
+drwxr-xr-x   2 root root 36864 Sep  9 11:13 bin/
+drwxr-xr-x   2 root root  4096 Apr 13  2016 games/
+drwxr-xr-x  34 root root  4096 Aug 28 10:53 include/
+drwxr-xr-x  59 root root  4096 Aug 28 10:53 lib/
+drwxr-xr-x   3 root root  4096 Aug 27 23:53 libexec/
+drwxr-xr-x  12 root root  4096 Aug 22 18:08 local/
+drwxr-xr-x   2 root root  4096 Sep 20 15:21 sbin/
+drwxr-xr-x 119 root root  4096 Sep 20 15:21 share/
+drwxr-xr-x   6 root root  4096 Sep  6  2017 src/
+```
+
+有时候需要更改文件目录的权限或者拥有者，可以采用```chmod```和```chown```命令来更改：
+
+```
+chmod +r|w|x <file|dir>
+chmod 777 <file|dir>
+chmod 666 <file|dir>
+# -R 参数表示递归
+chmod -R 777 <file|dir>
+
+chown -R nginx:nginx <file|dir>
+```
+
+这里补充下数据权限，```r=3```、```w=2```、```x=1```那么 可以用三个数字和来代表某一组权限了：
+
+- ```rwx-rw-rw=755```
+- ```rwx-rwx-rwx=777```
+- ```rwx-xr-x=731```
+
+> 判断一个用户对一个目录是否有目标权限，要注意从根目录开始排查
+
+队了，还有两个文件很重要：
+
+```
+/etc/password # 看用户
+/etc/grou # 看组
+```
+
+
+
