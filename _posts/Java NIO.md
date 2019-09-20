@@ -1,0 +1,52 @@
+# java.nio.Buffer 源码学习
+
+标签（空格分隔）： Java
+
+---
+
+> 基本特性：线程不安全的，需要正确同步
+
+## 文档注释
+
+首先在定义类之前，描述一下这个类的功能，第一句话概括性语句，后面再详细解释一些概念定义，以及该类的关键的访问方法的解释。总的来说文档注释就是为了给开发者提供一个该类的概览。同时还有以下格式要求：
+1） 文档注释用html标签来格式化，方便生产java doc
+2） 如果有引用的方法或者类，要使用@link来标识（例子：@link #flip）
+3)  不同的内容要隔行
+4） 标识类的作者，@author
+
+方法的注释：
+1） 方法的作用的简单描述
+2） 方法作用的详细描述(html 格式）
+3） 参数，每个参数要隔行
+```
+@param  array
+        The array that will back the new buffer
+```
+4) 返回值
+```
+@return  The new byte buffer
+```
+5） 抛出的异常，什么时候抛出
+```
+ @throws  IndexOutOfBoundsException
+          If the preconditions on the <tt>offset</tt> and <tt>length</tt>
+          parameters do not hold
+```
+
+
+##  异常处理
+
+只要有异常情况发生，必须抛出相应的异常（大多数可以继承RuntimeException,可以不用一定要捕获）。例如：
+IndexOutOfBoundsException，BufferUnderflowException,BufferOverflowException，IllegalArgumentException
+
+## 格式规范
+
+1） 抽象类一般将已经实现的方法放在前面，抽象方法放在后面
+
+## 知识
+
+final的用法：
+1） 常量定义
+2） 修饰类，表示该类不能被继承，也不能被扩展
+3） 修饰方法，该方法不能被子类覆盖
+4） final是唯一可以修饰局部变量的修饰符，局部内部类只能访问final修饰的局部变量。
