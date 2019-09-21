@@ -1,3 +1,8 @@
+---
+ layout: post
+ title:  "FreeMarker模板" 
+ date:  2019-09-22 00:20:04 +0800
+--- 
 FreeMarker的使用
 Apache FreeMarker是一个模板引擎，通过他我们可以根据模板生成html、java代码等文件，这在文件结构类似的的情况下可以避免我们很多重复操作。
 

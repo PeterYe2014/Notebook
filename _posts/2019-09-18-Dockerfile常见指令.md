@@ -1,3 +1,8 @@
+---
+ layout: post
+ title:  "Dockerfile常见指令" 
+ date:  2019-09-22 00:20:04 +0800
+--- 
 # Dockerfile常见的指令
 
 ### FROM
