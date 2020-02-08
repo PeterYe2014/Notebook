@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+=======
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+>>>>>>> 12c71c221f9f76c1769f0dfc075caad3ceef136f
