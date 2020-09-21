@@ -1,8 +1,4 @@
 ---
- layout: post
- title:  "TensorFlow核心语法" 
- date:  2019-09-22 00:20:04 +0800
---- 
 ## tf.keras
 
 该API时用于构建和训练深度学习模型的API，tf.keras完全兼容Keras代码。
